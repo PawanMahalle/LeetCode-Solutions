@@ -2,18 +2,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Combinations
+ * Problem statement: https://leetcode.com/problems/combinations/
+ * 
+ * Description: Return all possible combinations of size k of n integers.
+ *
+ * @author PawanMahalle
+ *
  */
 public class Solution {
 	public List<List<Integer>> combine(int n, int k) {
 
-		List<List<Integer>> list = new ArrayList();
+		List<List<Integer>> listOfCombinations = new ArrayList<List<Integer>>();
 		
-		for(int  p = 1; p <= n; p++){
-			populate(n, k, p, list, new ArrayList<Integer>());
+		for(int  position = 1; position <= n; position++){
+			populate(n, k, position, listOfCombinations, new ArrayList<Integer>());
 		}
 
-		return list;
+		return listOfCombinations;
 	}
 
 	private void populate(int n, int k, int pos, List<List<Integer>> list, List<Integer> ref) {
@@ -25,12 +30,12 @@ public class Solution {
 			return;
 		}
 
-		for(int nextPos = pos; nextPos < n; nextPos++){
-			populate(n, k, nextPos+1, list, subList);
+		for(int nextPos = pos +1 ; nextPos <= n; nextPos++){
+			populate(n, k, nextPos, list, subList);
 		}
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(new Solution().combine(4, 3));
+		System.out.println(new Solution().combine(4, 2));
 	}
 }
